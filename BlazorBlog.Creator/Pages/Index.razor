@@ -1,0 +1,20 @@
+@page "/"
+
+<MudCard>
+    <MudCardHeader>
+        <MudText Typo="Typo.h1">Blogentry Creator</MudText>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudForm>
+            <MudTextField Label="Title" T="string" @bind-Value="_content.Title" Required="true" />
+            <MudTextField Label="Content" T="string" @bind-Value="_content.Content" Required="true" />
+        </MudForm>
+    </MudCardContent>
+    <MudCardActions>
+        <Download Filename="@($"{_content.Id}.json")" ToDownload="@_content" />
+    </MudCardActions>
+</MudCard>
+
+@code {
+    ContentModel _content = new();
+}

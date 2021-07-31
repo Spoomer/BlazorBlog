@@ -1,12 +1,11 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using BlazorBlog.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
 
-namespace BlazorBlog
+namespace BlazorBlog.Creator
 {
     public class Program
     {
@@ -15,10 +14,9 @@ namespace BlazorBlog
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddSingleton<IContentListLoader,ContentListLoader>();
-            builder.Services.AddSingleton<IContentLoader, ContentLoader>();
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddMudServices();
+            builder.Services.AddBlazorDownloadFile();
 
             await builder.Build().RunAsync();
         }
