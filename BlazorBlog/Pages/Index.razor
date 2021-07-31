@@ -25,7 +25,7 @@
     @foreach (var item in ContentList)
     {
         <MudItem xs="12">
-            <MudCard >
+            <MudCard @key="item">
                 <MudCardHeader>
                     <MudText Typo="Typo.h4">@item.Title</MudText>
                 </MudCardHeader>

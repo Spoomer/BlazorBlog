@@ -1,0 +1,19 @@
+﻿@page "/Entry/{Id}"
+@inject IContentLoader Loader
+
+<h3>@_content.Title</h3>
+<Entry>@((MarkupString)_content.Content)</Entry>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+    Guid _id;
+    ContentModel _content = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _id = Guid.Parse(Id);
+        _content = await Loader.GetContentAsync(_id);
+
+    }
+}

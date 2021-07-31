@@ -1,4 +1,4 @@
-﻿using BlazorBlog.Models;
+﻿using BlazorBlog.Lib.Models;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;

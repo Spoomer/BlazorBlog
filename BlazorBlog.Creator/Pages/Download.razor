@@ -1,17 +1,17 @@
 ﻿@using System.Text.Json
-
+@typeparam T
 @inject IBlazorDownloadFileService BlazorDownloadFileService
 <MudIconButton Icon="@Icons.Filled.Download" Color="Color.Primary" OnClick="DownloadAsync">Create</MudIconButton>
 
 @code{
     [Parameter]
-    public string StringToDownload { get; set; }
+    public T ToDownload { get; set; }
     [Parameter]
     public string Filename { get; set; }
     async Task DownloadAsync()
     {
         // Generate a text file
-        byte[] file = System.Text.Encoding.UTF8.GetBytes(StringToDownload);
+        byte[] file = System.Text.Encoding.UTF8.GetBytes(JsonSerializer.Serialize<T>(ToDownload));
         await BlazorDownloadFileService.DownloadFileAsync(Filename, file);
     }
 }

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog", "BlazorBlog\Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog.Creator", "BlazorBlog.Creator\BlazorBlog.Creator.csproj", "{DEFD0CA6-D44A-43E9-AD2F-045FAE81948D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog.Lib", "BlazorBlog.Lib\BlazorBlog.Lib.csproj", "{1C5FC3DD-BB8E-4D44-BBF5-7FA350B95C77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog.Lib", "BlazorBlog.Lib\BlazorBlog.Lib.csproj", "{1C5FC3DD-BB8E-4D44-BBF5-7FA350B95C77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,7 +11,10 @@ namespace BlazorBlog.Lib.Models
         public string[] Tags { get; set; }
         public string Title { get; set; }
         public string ContentSnippet { get; set; }
+        public IndexEntryModel()
+        {
 
+        }
         public IndexEntryModel(ContentModel contentModel)
         {
             Id = contentModel.Id;

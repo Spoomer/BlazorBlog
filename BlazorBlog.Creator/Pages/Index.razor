@@ -12,9 +12,21 @@
     </MudCardContent>
     <MudCardActions>
         <Download Filename="@($"{_content.Id}.json")" ToDownload="@_content" />
+        <MudButton OnClick="GenerateContentlist">Generate ContentList</MudButton>
+        @if(_generated)
+                    {
+    <Download Filename="@($"ContentList.json")" ToDownload="@_indexEntryModel" />
+                    }
     </MudCardActions>
 </MudCard>
 
 @code {
     ContentModel _content = new();
+    IndexEntryModel _indexEntryModel;
+    bool _generated = false;
+    void GenerateContentlist()
+    {
+        _indexEntryModel = new(_content);
+        _generated = true;
+    }
 }

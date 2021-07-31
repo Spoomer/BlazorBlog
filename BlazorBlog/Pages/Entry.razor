@@ -1,16 +1,6 @@
-﻿@page "/Entry/{Id}"
-@inject IContentLoader Loader
-
-<h3>@_content.Title</h3>
-@_content.Content
+﻿@ChildContent
 
 @code {
-    [Parameter]
-    public Guid Id { get; set; }
-    ContentModel _content = new();
-
-    protected override async Task OnParametersSetAsync()
-    {
-        _content = await Loader.GetContentAsync(Id);
-    }
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
 }
