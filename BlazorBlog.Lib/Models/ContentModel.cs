@@ -8,8 +8,8 @@ namespace BlazorBlog.Lib.Models
     public class ContentModel
     {
         public Guid Id { get; set; } = Guid.NewGuid();
-        public string Title { get; set; }
-        public string[] Tags { get; set; }
-        public string Content { get; set; }
+        public string Title { get; set; } = "";
+        public string[] Tags { get; set; } = Array.Empty<string>();
+        public string Content { get; set; } = "";
     }
 }

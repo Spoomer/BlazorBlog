@@ -7,10 +7,10 @@ namespace BlazorBlog.Lib.Models
 {
     public class IndexEntryModel
     {
-        public Guid Id { get; set; }
-        public string[] Tags { get; set; }
-        public string Title { get; set; }
-        public string ContentSnippet { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public string[] Tags { get; set; } = Array.Empty<string>();
+        public string Title { get; set; } = "";
+        public string ContentSnippet { get; set; } = "";
         public IndexEntryModel()
         {
 
