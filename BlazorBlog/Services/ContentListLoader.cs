@@ -17,7 +17,7 @@ namespace BlazorBlog.Services
         }
         public async Task<IndexEntryModel[]> GetContentListAsync()
         {
-            return await Http.GetFromJsonAsync<IndexEntryModel[]>("ContentList.json");
+            return await Http.GetFromJsonAsync<IndexEntryModel[]>("ContentList.json") ?? Array.Empty<IndexEntryModel>();
         }
         //public async Task<bool> SaveContentList(IndexEntryModel[] ContentList)
         //{

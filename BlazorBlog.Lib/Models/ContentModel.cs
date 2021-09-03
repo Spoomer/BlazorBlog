@@ -10,6 +10,6 @@ namespace BlazorBlog.Lib.Models
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Title { get; set; } = "";
         public string[] Tags { get; set; } = Array.Empty<string>();
-        public string Content { get; set; } = "";
+        public ContentPart[] ContentParts { get; set; } = Array.Empty<ContentPart>();
     }
 }

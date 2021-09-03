@@ -20,7 +20,7 @@ namespace BlazorBlog.Lib.Models
             Id = contentModel.Id;
             Tags = contentModel.Tags;
             Title = contentModel.Title;
-            ContentSnippet = contentModel.Content[..30] + "...";
+            ContentSnippet = contentModel.ContentParts[0] + "...";
         }
     }
 }

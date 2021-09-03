@@ -1,12 +1,20 @@
 ﻿@page "/Entry/{Id}"
+@using Markdig
 @inject IContentLoader Loader
 
 <h3>@_content.Title</h3>
-<Entry>@((MarkupString)_content.Content)</Entry>
+@foreach (var part in _content.ContentParts)
+{
+    if(part.Type == Lib.Enums.ContentType.MarkDownText)
+    {
+        <Entry>@(Markdown.ToHtml(part.Content))</Entry>  
+    } 
+}
+
 
 @code {
     [Parameter]
-    public string Id { get; set; }
+    public string Id { get; set; } ="";
     Guid _id;
     ContentModel _content = new();
 

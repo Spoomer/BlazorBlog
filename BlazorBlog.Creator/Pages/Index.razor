@@ -7,7 +7,17 @@
     <MudCardContent>
         <MudForm>
             <MudTextField Label="Title" T="string" @bind-Value="_content.Title" Required="true" />
-            <MudTextField Label="Content" T="string" @bind-Value="_content.Content" Required="true" />
+            @foreach (var part in _content.ContentParts)
+            {
+                <MudSelect T="BlazorBlog.Lib.Enums.ContentType">
+                    @* @foreach (var item in ContentType.)
+                    {
+                        <MudSelectItem></MudSelectItem>
+                    } *@
+                </MudSelect>
+                <MudTextField Label="Content" T="string" @bind-Value="part.Content" Required="true" />    
+            }
+            
         </MudForm>
     </MudCardContent>
     <MudCardActions>

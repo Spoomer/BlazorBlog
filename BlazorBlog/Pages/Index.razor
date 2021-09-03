@@ -30,7 +30,7 @@
                     <MudText Typo="Typo.h4">@item.Title</MudText>
                 </MudCardHeader>
                 <MudCardContent>
-                    <MudText>@item.ContentSnippet</MudText>
+                    <MudText>@((MarkupString)item.ContentSnippet)</MudText>
                 </MudCardContent>
                 <MudCardActions>
                     <MudLink Href=@($"/Entry/{item.Id}")>Read more...</MudLink>

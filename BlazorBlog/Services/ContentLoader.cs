@@ -17,7 +17,7 @@ namespace BlazorBlog.Services
         }
         public async Task<ContentModel> GetContentAsync(Guid id)
         {
-            return await Http.GetFromJsonAsync<ContentModel>($"content/{id}.json");
+            return await Http.GetFromJsonAsync<ContentModel>($"content/{id}.json") ?? new();
         }
         //public async Task<bool> SaveContent(ContentModel content)
         //{
