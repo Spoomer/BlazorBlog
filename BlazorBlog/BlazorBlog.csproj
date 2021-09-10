@@ -1,21 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
-
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Markdig" Version="0.26.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.8" PrivateAssets="all" />
-    <PackageReference Include="MudBlazor" Version="5.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\content\" />
+    <PackageReference Include="Markdig" Version="0.26.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.9"/>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.9" PrivateAssets="all"/>
+    <PackageReference Include="MudBlazor" Version="5.1.3"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../BlazorBlog.Lib/BlazorBlog.Lib.csproj" />
+    <Folder Include="wwwroot\content\"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../BlazorBlog.Lib/BlazorBlog.Lib.csproj"/>
   </ItemGroup>
 </Project>

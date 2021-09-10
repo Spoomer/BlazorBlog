@@ -1,19 +1,34 @@
 @page "/"
 
+
 <MudCard>
     <MudCardHeader>
         <MudText Typo="Typo.h1">Blogentry Creator</MudText>
     </MudCardHeader>
     <MudCardContent>
+        <MudPaper>
+            <MudText Typo="Typo.h3">@_content.Title</MudText>
+            @foreach (var part in _content.ContentParts)
+            {
+                if(part.Type == Lib.Enums.ContentType.MarkDownText)
+                {
+                    @(Markdown.ToHtml(part.Content)) 
+                }
+                else
+                {
+                    @part.Content
+                }
+            }
+        </MudPaper>
         <MudForm>
             <MudTextField Label="Title" T="string" @bind-Value="_content.Title" Required="true" />
             @foreach (var part in _content.ContentParts)
             {
-                <MudSelect T="BlazorBlog.Lib.Enums.ContentType">
-                    @* @foreach (var item in ContentType.)
+                <MudSelect T="ContentType">
+                    @foreach (var item in ContentType.)
                     {
-                        <MudSelectItem></MudSelectItem>
-                    } *@
+                        <MudSelectItem>item.ToString()</MudSelectItem>
+                    }
                 </MudSelect>
                 <MudTextField Label="Content" T="string" @bind-Value="part.Content" Required="true" />    
             }
@@ -24,9 +39,9 @@
         <Download Filename="@($"{_content.Id}.json")" ToDownload="@_content" />
         <MudButton OnClick="GenerateContentlist">Generate ContentList</MudButton>
         @if(_generated)
-                    {
-    <Download Filename="@($"ContentList.json")" ToDownload="@_indexEntryModel" />
-                    }
+        {
+            <Download Filename="@($"ContentList.json")" ToDownload="@_indexEntryModel" />
+        }
     </MudCardActions>
 </MudCard>
 
