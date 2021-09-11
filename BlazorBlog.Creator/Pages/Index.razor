@@ -7,12 +7,13 @@
     </MudCardHeader>
     <MudCardContent>
         <MudPaper>
+            <MudText Typo="Typo.h1">VORSCHAU</MudText>
             <MudText Typo="Typo.h3">@_content.Title</MudText>
             @foreach (var part in _content.ContentParts)
             {
-                if(part.Type == Lib.Enums.ContentType.MarkDownText)
+                if (part.Type == Lib.Enums.ContentType.MarkDownText)
                 {
-                    @(Markdown.ToHtml(part.Content)) 
+                    @(Markdown.ToHtml(part.Content))
                 }
                 else
                 {
@@ -24,21 +25,22 @@
             <MudTextField Label="Title" T="string" @bind-Value="_content.Title" Required="true" />
             @foreach (var part in _content.ContentParts)
             {
-                <MudSelect T="ContentType">
-                    @foreach (var item in ContentType.)
+                <MudSelect T="ContentType" @bind-Value="part.Type">
+                    @foreach (ContentType item in Enum.GetValues(typeof(ContentType)))
                     {
-                        <MudSelectItem>item.ToString()</MudSelectItem>
+                        <MudSelectItem T="ContentType" Value="item">@item.ToString()</MudSelectItem>
                     }
                 </MudSelect>
-                <MudTextField Label="Content" T="string" @bind-Value="part.Content" Required="true" />    
+                <MudTextField Label="Content" T="string" @bind-Value="part.Content" Required="true" Lines="@_lines" @onkeydown="Addlines" />
             }
-            
+            <MudIconButton Icon="@Icons.Filled.Add" OnClick="AddPart"></MudIconButton>
+
         </MudForm>
     </MudCardContent>
     <MudCardActions>
         <Download Filename="@($"{_content.Id}.json")" ToDownload="@_content" />
         <MudButton OnClick="GenerateContentlist">Generate ContentList</MudButton>
-        @if(_generated)
+        @if (_generated)
         {
             <Download Filename="@($"ContentList.json")" ToDownload="@_indexEntryModel" />
         }
@@ -49,9 +51,27 @@
     ContentModel _content = new();
     IndexEntryModel _indexEntryModel;
     bool _generated = false;
+    int _lines = 1;
+
+
     void GenerateContentlist()
     {
         _indexEntryModel = new(_content);
         _generated = true;
+    }
+    void Addlines(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            _lines++;
+        }
+
+    }
+    void AddPart()
+    {
+        List<ContentPart> temp = new(_content.ContentParts.Length + 1);
+        temp.AddRange(_content.ContentParts);
+        temp.Add(new ContentPart());
+        _content.ContentParts = temp.ToArray();
     }
 }
