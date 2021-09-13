@@ -3,21 +3,23 @@
 
 <MudCard>
     <MudCardHeader>
-        <MudText Typo="Typo.h1">Blogentry Creator</MudText>
+        <MudText Typo="Typo.h2">Blogentry Creator</MudText>
     </MudCardHeader>
     <MudCardContent>
+        <MudText Typo="Typo.h5">Vorschau:</MudText>
         <MudPaper>
-            <MudText Typo="Typo.h1">VORSCHAU</MudText>
-            <MudText Typo="Typo.h3">@_content.Title</MudText>
+            <MudText Typo="Typo.h4">@_content.Title</MudText>
             @foreach (var part in _content.ContentParts)
             {
                 if (part.Type == Lib.Enums.ContentType.MarkDownText)
                 {
-                    @(Markdown.ToHtml(part.Content))
+                    <Entry>@((MarkupString)Markdown.ToHtml(part.Content))</Entry>
                 }
                 else
                 {
-                    @part.Content
+                    <Entry>
+                        @part.Content
+                    </Entry>
                 }
             }
         </MudPaper>
@@ -25,13 +27,15 @@
             <MudTextField Label="Title" T="string" @bind-Value="_content.Title" Required="true" />
             @foreach (var part in _content.ContentParts)
             {
-                <MudSelect T="ContentType" @bind-Value="part.Type">
-                    @foreach (ContentType item in Enum.GetValues(typeof(ContentType)))
-                    {
-                        <MudSelectItem T="ContentType" Value="item">@item.ToString()</MudSelectItem>
-                    }
-                </MudSelect>
-                <MudTextField Label="Content" T="string" @bind-Value="part.Content" Required="true" Lines="@_lines" @onkeydown="Addlines" />
+                <MudPaper>
+                    <MudMenu Icon="@Icons.Material.Filled.Build">
+                        @foreach (ContentType item in Enum.GetValues(typeof(ContentType)))
+                        {
+                            <MudMenuItem OnClick="(e)=>part.Type = item">@item.ToString()</MudMenuItem>
+                        }
+                    </MudMenu>
+                    <MudTextField Label="Content" T="string" @bind-Value="part.Content" Required="true" Lines="@part.Lines" @onkeydown="(e)=>AddLine(e,part)" Immediate="true" />
+                </MudPaper>
             }
             <MudIconButton Icon="@Icons.Filled.Add" OnClick="AddPart"></MudIconButton>
 
@@ -51,7 +55,6 @@
     ContentModel _content = new();
     IndexEntryModel _indexEntryModel;
     bool _generated = false;
-    int _lines = 1;
 
 
     void GenerateContentlist()
@@ -59,19 +62,21 @@
         _indexEntryModel = new(_content);
         _generated = true;
     }
-    void Addlines(KeyboardEventArgs e)
+    void AddLine(KeyboardEventArgs e, ContentPart part)
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
-            _lines++;
+            part.Lines++;
         }
 
     }
     void AddPart()
     {
-        List<ContentPart> temp = new(_content.ContentParts.Length + 1);
-        temp.AddRange(_content.ContentParts);
-        temp.Add(new ContentPart());
-        _content.ContentParts = temp.ToArray();
+        List<ContentPart> tempParts = new(_content.ContentParts.Length + 1);
+        tempParts.AddRange(_content.ContentParts);
+        ContentPart part = new();
+        part.Lines = 2;
+        tempParts.Add(part);
+        _content.ContentParts = tempParts.ToArray();
     }
 }
