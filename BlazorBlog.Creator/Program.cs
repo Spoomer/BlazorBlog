@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using MudBlazor.Services;
 
 namespace BlazorBlog.Creator
 {
@@ -15,7 +14,6 @@ namespace BlazorBlog.Creator
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddMudServices();
             builder.Services.AddBlazorDownloadFile();
 
             await builder.Build().RunAsync();

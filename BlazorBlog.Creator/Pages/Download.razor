@@ -1,7 +1,7 @@
 ﻿@using System.Text.Json
 @typeparam T
 @inject IBlazorDownloadFileService BlazorDownloadFileService
-<MudButton EndIcon="@Icons.Filled.Download" Color="Color.Primary" OnClick="DownloadAsync">Create</MudButton>
+<button class="btn btn-primary" @onclick="DownloadAsync">Create</button>
 
 @code{
     [Parameter]

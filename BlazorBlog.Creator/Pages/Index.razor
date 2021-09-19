@@ -1,14 +1,14 @@
 @page "/"
 
 
-<MudCard>
-    <MudCardHeader>
-        <MudText Typo="Typo.h2">Blogentry Creator</MudText>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.h5">Vorschau:</MudText>
-        <MudPaper>
-            <MudText Typo="Typo.h4">@_content.Title</MudText>
+<div class="card">
+    <div class="card-header">
+        <h5>Blogentry Creator</h5>
+    </div>
+    <div class="card-body">
+        <h5>Vorschau:</h5>
+        <div>
+            <h5>@_content.Title</h5>
             @foreach (var part in _content.ContentParts)
             {
                 if (part.Type == Lib.Enums.ContentType.MarkDownText)
@@ -22,34 +22,39 @@
                     </Entry>
                 }
             }
-        </MudPaper>
-        <MudForm>
-            <MudTextField Label="Title" T="string" @bind-Value="_content.Title" Required="true" />
+        </div>
+        <form>
+            <input type="text" @bind-value="_content.Title" />
             @foreach (var part in _content.ContentParts)
             {
-                <MudPaper>
-                    <MudMenu Icon="@Icons.Material.Filled.Build">
-                        @foreach (ContentType item in Enum.GetValues(typeof(ContentType)))
-                        {
-                            <MudMenuItem OnClick="(e)=>part.Type = item">@item.ToString()</MudMenuItem>
-                        }
-                    </MudMenu>
-                    <MudTextField Label="Content" T="string" @bind-Value="part.Content" Required="true" Lines="@part.Lines" @onkeydown="(e)=>AddLine(e,part)" Immediate="true" />
-                </MudPaper>
+                <div>
+                    <div class="btn-group dropend">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="oi oi-wrench"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach (ContentType item in Enum.GetValues(typeof(ContentType)))
+                            {
+                            <li><button @onclick="(e)=>part.Type = item">@item.ToString()</button></li>
+                            }
+                        </ul>
+                    </div>
+                    <input type="text" @bind-value="part.Content" @onkeydown="(e)=>AddLine(e,part)" />
+                </div>
             }
-            <MudIconButton Icon="@Icons.Filled.Add" OnClick="AddPart"></MudIconButton>
+            <button @onclick="AddPart"></button>
 
-        </MudForm>
-    </MudCardContent>
-    <MudCardActions>
+        </form>
+    </div>
+    <div class="card-footer">
         <Download Filename="@($"{_content.Id}.json")" ToDownload="@_content" />
-        <MudButton OnClick="GenerateContentlist">Generate ContentList</MudButton>
+        <button @onclick="GenerateContentlist">Generate ContentList</button>
         @if (_generated)
         {
             <Download Filename="@($"ContentList.json")" ToDownload="@_indexEntryModel" />
         }
-    </MudCardActions>
-</MudCard>
+    </div>
+</div>
 
 @code {
     ContentModel _content = new();

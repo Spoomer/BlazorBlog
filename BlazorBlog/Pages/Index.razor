@@ -1,45 +1,33 @@
 @page "/"
 @inject IContentListLoader Loader
 
-<MudGrid Class="mt-4">
-    <MudItem xs="12" sm="12" md="12">
-        <MudText Typo="Typo.h3">Blazorblog</MudText>
-        <MudText Typo="Typo.subtitle1">Static without Server or DB</MudText>
-    </MudItem>
+<div class="d-flex flex-column flex-grow-1 bd-highlight">
+    <div class="bd-highlight">
+        <h3>Blazorblog</h3>
+        <h4>Static without Server or DB</h4>
+    </div>
     @if (_loading)
     {
-        <MudItem xs="12">
-            <MudCard>
-                <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
-                <MudCardContent>
-                    <MudSkeleton Width="30%" Height="42px;" />
-                    <MudSkeleton Width="80%" />
-                    <MudSkeleton Width="100%" />
-                </MudCardContent>
-                <MudCardActions>
-                    <MudSkeleton Width="64px" Height="40px" Class="ml-2" />
-                </MudCardActions>
-            </MudCard>
-        </MudItem>
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     }
     @foreach (var item in ContentList)
     {
-        <MudItem xs="12">
-            <MudCard @key="item">
-                <MudCardHeader>
-                    <MudText Typo="Typo.h4">@item.Title</MudText>
-                </MudCardHeader>
-                <MudCardContent>
-                    <MudText>@((MarkupString)item.ContentSnippet)</MudText>
-                </MudCardContent>
-                <MudCardActions>
-                    <MudLink Href=@($"/Entry/{item.Id}")>Read more...</MudLink>
-                </MudCardActions>
-            </MudCard>
-        </MudItem>
+        <div class="d-flex flex-grow-1" style="justify-content:center">
+            <div class="card" style="width:90%" @key="item">
+                <div class="card-header">
+                    <h4>@item.Title</h4>
+                </div>
+                <div class="card-body">
+                    @((MarkupString)item.ContentSnippet)
+                </div>
+                <div class="card-footer">
+                    <a href=@($"/Entry/{item.Id}")>Read more...</a>
+                </div>
+            </div>
+        </div>
     }
 
-</MudGrid>
+</div>
 
 @code {
 

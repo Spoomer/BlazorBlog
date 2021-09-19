@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using BlazorBlog.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using MudBlazor.Services;
 
 namespace BlazorBlog
 {
@@ -18,7 +17,6 @@ namespace BlazorBlog
             builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddSingleton<IContentListLoader,ContentListLoader>();
             builder.Services.AddSingleton<IContentLoader, ContentLoader>();
-            builder.Services.AddMudServices();
 
             await builder.Build().RunAsync();
         }
