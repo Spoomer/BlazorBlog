@@ -43,8 +43,9 @@
             "type": "process",
             "args": [
                 "watch",
-                "run",
+                "--project",
                 "${workspaceFolder}/BlazorBlog/BlazorBlog.csproj",
+                "run",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

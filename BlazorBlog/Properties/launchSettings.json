@@ -15,7 +15,9 @@
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5000",
-      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
+      "jsWebView2Debugging": true,
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      "launchBrowser": true
     },
     "IIS Express": {
       "commandName": "IISExpress",

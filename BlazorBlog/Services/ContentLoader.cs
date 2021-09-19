@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace BlazorBlog.Services
 {
@@ -17,7 +18,9 @@ namespace BlazorBlog.Services
         }
         public async Task<ContentModel> GetContentAsync(Guid id)
         {
-            return await Http.GetFromJsonAsync<ContentModel>($"content/{id}.json") ?? new();
+            JsonSerializerOptions option = new();
+            option.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+            return await Http.GetFromJsonAsync<ContentModel>($"content/{id}.json",options:option) ?? new();
         }
         //public async Task<bool> SaveContent(ContentModel content)
         //{

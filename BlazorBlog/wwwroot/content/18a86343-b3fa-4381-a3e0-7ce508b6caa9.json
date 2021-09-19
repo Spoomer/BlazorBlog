@@ -1,1 +1,5 @@
-{"Id":"18a86343-b3fa-4381-a3e0-7ce508b6caa9","Title":"Testtitel","Tags":null,"Content":"\u003Cp\u003ETextContent\u003Cp\u003E Hallo Wo Wie Wa \u003Ch1\u003E\u00DCberschrift\u003C/h1\u003E"}
+{
+    "Id": "18a86343-b3fa-4381-a3e0-7ce508b6caa9",
+    "Title": "Testtitel",
+    "Content": "\u003Cp\u003ETextContent\u003Cp\u003E Hallo Wo Wie Wa \u003Ch1\u003E\u00DCberschrift\u003C/h1\u003E"
+}

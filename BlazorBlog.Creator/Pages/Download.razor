@@ -5,13 +5,17 @@
 
 @code{
     [Parameter]
-    public T ToDownload { get; set; }
+    public T? ToDownload { get; set; }
     [Parameter]
-    public string Filename { get; set; }
+    public string Filename { get; set; } = "";
     async Task DownloadAsync()
     {
+        byte[] file = Array.Empty<byte>();
         // Generate a text file
-        byte[] file = System.Text.Encoding.UTF8.GetBytes(JsonSerializer.Serialize<T>(ToDownload));
+        if (ToDownload is not null)
+        {
+            file = System.Text.Encoding.UTF8.GetBytes(JsonSerializer.Serialize<T>(ToDownload));
+        }
         await BlazorDownloadFileService.DownloadFileAsync(Filename, file);
     }
 }
