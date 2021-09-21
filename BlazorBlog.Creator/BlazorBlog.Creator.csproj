@@ -4,12 +4,20 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Markdig" Version="0.26.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.9"/>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.9" PrivateAssets="all"/>
-    <PackageReference Include="BlazorDownloadFileFast" Version="0.0.4"/>
+    <PackageReference Include="Markdig" Version="0.26.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.9" PrivateAssets="all" />
+    <PackageReference Include="BlazorDownloadFileFast" Version="0.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../BlazorBlog.Lib/BlazorBlog.Lib.csproj"/>
+    <ProjectReference Include="../BlazorBlog.Lib/BlazorBlog.Lib.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Shared\MainLayout.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Shared\NavMenu.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
   </ItemGroup>
 </Project>
