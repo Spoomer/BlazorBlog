@@ -1,17 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Markdig" Version="0.26.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.9"/>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.9" PrivateAssets="all"/>
+    <PackageReference Include="Markdig" Version="0.27.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.2" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\content\"/>
+    <Folder Include="wwwroot\content\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../BlazorBlog.Lib/BlazorBlog.Lib.csproj"/>
+    <ProjectReference Include="../BlazorBlog.Lib/BlazorBlog.Lib.csproj" />
   </ItemGroup>
 </Project>
