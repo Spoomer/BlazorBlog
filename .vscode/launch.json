@@ -7,7 +7,7 @@
             "request": "launch",
             "cwd": "${workspaceFolder}/BlazorBlog",
             "browser": "edge",
-            "url": "http://localhost:5000"
+            "url": "http://localhost:65438"
         },
         {
             "name": "BlazorBlog.Creator",
@@ -15,7 +15,7 @@
             "request": "launch",
             "cwd": "${workspaceFolder}/BlazorBlog.Creator",
             "browser": "edge",
-            "url": "http://localhost:5000"
+            "url": "http://localhost:58939"
         }
     ]
 }

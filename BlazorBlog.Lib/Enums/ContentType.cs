@@ -1,10 +1,9 @@
-namespace BlazorBlog.Lib.Enums
+namespace BlazorBlog.Lib.Enums;
+
+public enum ContentType
 {
-    public enum ContentType
-    {
-        Empty,
-        Title,
-        Text,
-        MarkDownText,
-    }
+    Empty,
+    Title,
+    Text,
+    MarkDownText,
 }

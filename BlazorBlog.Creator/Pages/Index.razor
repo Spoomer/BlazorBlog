@@ -48,7 +48,7 @@
     </div>
     <div class="card-footer">
         <Download Filename="@($"{_content.Id}.json")" ToDownload="@_content" />
-        <button @onclick="GenerateContentlist">Generate ContentList</button>
+        <button class="btn btn-primary" @onclick="GenerateContentlist">Generate ContentList</button>
         @if (_generated)
         {
             <Download Filename="@($"ContentList.json")" ToDownload="@_indexEntryModel" />
@@ -83,6 +83,5 @@
         part.Lines = 2;
         tempParts.Add(part);
         _content.ContentParts = tempParts.ToArray();
-        StateHasChanged();
     }
 }
