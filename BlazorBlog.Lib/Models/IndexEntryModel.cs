@@ -17,7 +17,7 @@ public class IndexEntryModel
         Title = contentModel.Title;
         if (contentModel.ContentParts.Length > 0)
         {
-            ContentSnippet = contentModel.ContentParts[0] + "...";
+            ContentSnippet = contentModel.ContentParts[0].Content + "...";
         }
 
     }

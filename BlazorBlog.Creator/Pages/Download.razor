@@ -1,21 +1,5 @@
-﻿@using System.Text.Json
-@typeparam T
-@inject IBlazorDownloadFileService BlazorDownloadFileService
+﻿@typeparam T
+
 <button class="btn btn-primary" @onclick="DownloadAsync">Create</button>
 
-@code{
-    [Parameter]
-    public T? ToDownload { get; set; }
-    [Parameter]
-    public string Filename { get; set; } = "";
-    async Task DownloadAsync()
-    {
-        byte[] file = Array.Empty<byte>();
-        // Generate a text file
-        if (ToDownload is not null)
-        {
-            file = System.Text.Encoding.UTF8.GetBytes(JsonSerializer.Serialize<T>(ToDownload));
-        }
-        await BlazorDownloadFileService.DownloadFileAsync(Filename, file);
-    }
-}
+

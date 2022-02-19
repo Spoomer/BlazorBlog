@@ -7,7 +7,7 @@
 {
     if(part.Type == Lib.Enums.ContentType.MarkDownText)
     {
-        <Entry>@(Markdown.ToHtml(part.Content))</Entry>  
+        <Entry>@((MarkupString)Markdown.ToHtml(part.Content))</Entry>  
     }
     else
     {

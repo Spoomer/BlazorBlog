@@ -23,28 +23,25 @@
                 }
             }
         </div>
-        <form>
-            <input type="text" @bind-value="_content.Title" />
-            @foreach (var part in _content.ContentParts)
-            {
-                <div>
-                    <div class="btn-group dropend">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="oi oi-wrench"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            @foreach (ContentType item in Enum.GetValues(typeof(ContentType)))
-                            {
+        <input type="text" @bind-value="_content.Title" />
+        @foreach (var part in _content.ContentParts)
+        {
+            <div>
+                <div class="btn-group dropend">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="oi oi-wrench"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach (ContentType item in Enum.GetValues(typeof(ContentType)))
+                        {
                             <li><button @onclick="(e)=>part.Type = item">@item.ToString()</button></li>
-                            }
-                        </ul>
-                    </div>
-                    <input type="text" @bind-value="part.Content" @onkeydown="(e)=>AddLine(e,part)" />
+                        }
+                    </ul>
                 </div>
-            }
-            <button class="btn btn-primary" @onclick="AddPart">+</button>
-
-        </form>
+                <input type="text" @bind-value="part.Content" @onkeydown="(e)=>AddLine(e,part)" />
+            </div>
+        }
+        <button class="btn btn-primary" @onclick="AddPart">+</button>
     </div>
     <div class="card-footer">
         <Download Filename="@($"{_content.Id}.json")" ToDownload="@_content" />
@@ -55,33 +52,3 @@
         }
     </div>
 </div>
-
-@code {
-    ContentModel _content = new();
-    IndexEntryModel _indexEntryModel = new();
-    bool _generated = false;
-
-
-    void GenerateContentlist()
-    {
-        _indexEntryModel = new(_content);
-        _generated = true;
-    }
-    void AddLine(KeyboardEventArgs e, ContentPart part)
-    {
-        if (e.Code == "Enter" || e.Code == "NumpadEnter")
-        {
-            part.Lines++;
-        }
-
-    }
-    void AddPart()
-    {
-        List<ContentPart> tempParts = new(_content.ContentParts.Length + 1);
-        tempParts.AddRange(_content.ContentParts);
-        ContentPart part = new();
-        part.Lines = 2;
-        tempParts.Add(part);
-        _content.ContentParts = tempParts.ToArray();
-    }
-}
