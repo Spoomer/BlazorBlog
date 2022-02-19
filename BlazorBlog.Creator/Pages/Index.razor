@@ -42,7 +42,7 @@
                     <input type="text" @bind-value="part.Content" @onkeydown="(e)=>AddLine(e,part)" />
                 </div>
             }
-            <button @onclick="AddPart"></button>
+            <button class="btn btn-primary" @onclick="AddPart">+</button>
 
         </form>
     </div>
@@ -83,5 +83,6 @@
         part.Lines = 2;
         tempParts.Add(part);
         _content.ContentParts = tempParts.ToArray();
+        StateHasChanged();
     }
 }
