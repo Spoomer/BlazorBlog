@@ -1,24 +1,30 @@
 ﻿@page "/Entry/{Id}"
 @using Markdig
 @inject IContentLoader Loader
-
-<h3>@_content.Title</h3>
-@foreach (var part in _content.ContentParts)
-{
-    if(part.Type == Lib.Enums.ContentType.MarkDownText)
-    {
-        <Entry>@((MarkupString)Markdown.ToHtml(part.Content))</Entry>  
-    }
-    else
-    {
-        <Entry>@part.Content</Entry>
-    }
-}
-
+@inject MarkdownService MarkdownServ
+<div class="masthead-followup mx-5 px-5 px-md-3">
+    <section
+        class="mt-2 mb-5 pb-md-4 align-items-center p-4 pb-0 pt-lg-5 rounded-3 border shadow-lg">
+        <h2 class="px-5 mt-4">@_content.Title</h2>
+        @foreach (var part in _content.ContentParts)
+        {
+            if (part.Type == Lib.Enums.ContentType.MarkDownText)
+            {
+                <Entry>@((MarkupString)Markdown.ToHtml(part.Content,MarkdownServ.Pipeline))</Entry>
+            }
+            else
+            {
+                <Entry>
+                    <p>@part.Content</p>
+                </Entry>
+            }
+        }
+    </section>
+</div>
 
 @code {
     [Parameter]
-    public string Id { get; set; } ="";
+    public string Id { get; set; } = "";
     Guid _id;
     ContentModel _content = new();
 
@@ -26,6 +32,5 @@
     {
         _id = Guid.Parse(Id);
         _content = await Loader.GetContentAsync(_id);
-
     }
 }

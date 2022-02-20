@@ -34,11 +34,11 @@
                     <ul class="dropdown-menu">
                         @foreach (ContentType item in Enum.GetValues(typeof(ContentType)))
                         {
-                            <li><button @onclick="(e)=>part.Type = item">@item.ToString()</button></li>
+                            <li><button class="btn btn-secondary" @onclick="(e)=>part.Type = item">@item.ToString()</button></li>
                         }
                     </ul>
                 </div>
-                <input type="text" @bind-value="part.Content" @onkeydown="(e)=>AddLine(e,part)" />
+                <textarea class="form-control"  @bind="part.Content" @onkeydown="(e)=>AddLine(e,part)" />
             </div>
         }
         <button class="btn btn-primary" @onclick="AddPart">+</button>
