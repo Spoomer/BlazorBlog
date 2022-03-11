@@ -1,17 +1,24 @@
+using System.Net.Http;
 using BlazorBlog.Lib.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.Web.Virtualization;
+using Microsoft.JSInterop;
 
 namespace BlazorBlog.Creator.Pages;
 
-public partial class Index
+public partial class Index : ComponentBase
 {
-    ContentModel _content = new();
-    IndexEntryModel _indexEntryModel = new();
-    bool _generated = false;
+    ContentModel Content { get; set; } = new();
+    IndexEntryModel IndexEntryModel { get; set; } = new();
+    bool Generated { get; set; } = false;
     void GenerateContentlist()
     {
-        _indexEntryModel = new(_content);
-        _generated = true;
+        IndexEntryModel = new(Content);
+        Generated = true;
     }
 
     void AddLine(KeyboardEventArgs e, ContentPart part)
@@ -24,11 +31,11 @@ public partial class Index
 
     void AddPart()
     {
-        List<ContentPart> tempParts = new(_content.ContentParts.Length + 1);
-        tempParts.AddRange(_content.ContentParts);
+        List<ContentPart> tempParts = new(Content.ContentParts.Length + 1);
+        tempParts.AddRange(Content.ContentParts);
         ContentPart part = new();
         part.Lines = 2;
         tempParts.Add(part);
-        _content.ContentParts = tempParts.ToArray();
+        Content.ContentParts = tempParts.ToArray();
     }
 }

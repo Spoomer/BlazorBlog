@@ -8,8 +8,8 @@
     <div class="card-body">
         <h5>Vorschau:</h5>
         <div>
-            <h5>@_content.Title</h5>
-            @foreach (var part in _content.ContentParts)
+            <h5>@Content.Title</h5>
+            @foreach (var part in Content.ContentParts)
             {
                 if (part.Type == Lib.Enums.ContentType.MarkDownText)
                 {
@@ -23,32 +23,41 @@
                 }
             }
         </div>
-        <input type="text" @bind-value="_content.Title" />
-        @foreach (var part in _content.ContentParts)
+        Titel:
+        <input class="form-control" type="text" @bind-value="Content.Title" />
+        @foreach (var part in Content.ContentParts)
         {
             <div>
-                <div class="btn-group dropend">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="oi oi-wrench"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        @foreach (ContentType item in Enum.GetValues(typeof(ContentType)))
-                        {
-                            <li><button class="btn btn-secondary" @onclick="(e)=>part.Type = item">@item.ToString()</button></li>
-                        }
-                    </ul>
+                <div class="d-flex align-items-end justify-content-end">
+                    <span class="badge bg-primary align-center">@part.Type
+                    <div class="btn-group dropend">
+                        <button class="badge btn rounded-pill bg-light text-dark mx-1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="oi oi-wrench"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach (ContentType item in Enum.GetValues(typeof(ContentType)))
+                            {
+                                <li><button class="dropdown-item" @onclick="(e)=>part.Type = item">@item.ToString()</button>
+                                </li>
+                            }
+                        </ul>
+                       
+                    </div>
+                     </span>
                 </div>
-                <textarea class="form-control"  @bind="part.Content" @onkeydown="(e)=>AddLine(e,part)" />
+                <textarea rows="@part.Lines" class="form-control" @bind="part.Content" @bind:event="oninput" @onkeydown="(e)=>AddLine(e,part)" />
             </div>
         }
-        <button class="btn btn-primary" @onclick="AddPart">+</button>
+        <p>
+            <button class="btn btn-primary" @onclick="AddPart">+</button>
+        </p>
     </div>
     <div class="card-footer">
-        <Download Filename="@($"{_content.Id}.json")" ToDownload="@_content" />
+        <Download Filename="@($"{Content.Id}.json")" ToDownload="@Content" />
         <button class="btn btn-primary" @onclick="GenerateContentlist">Generate ContentList</button>
-        @if (_generated)
+        @if (Generated)
         {
-            <Download Filename="@($"ContentList.json")" ToDownload="@_indexEntryModel" />
+            <Download Filename="@($"ContentList.json")" ToDownload="@IndexEntryModel" />
         }
     </div>
 </div>
