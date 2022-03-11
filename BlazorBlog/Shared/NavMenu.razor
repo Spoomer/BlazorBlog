@@ -1,5 +1,6 @@
-﻿<div class="top-row pl-5 navbar navbar-dark">
-    <a class="navbar-brand" href="">BlazorBlog</a>
+﻿@inject BlogSettings BlogSettings
+<div class="top-row pl-5 navbar navbar-dark">
+    <a class="navbar-brand" href="">@BlogSettings.Blogname</a>
     <ul class="nav">
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
