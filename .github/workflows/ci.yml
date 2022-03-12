@@ -10,9 +10,9 @@ jobs:
 
         # Install .NET Core SDK
         - name: Setup .NET Core
-          uses: actions/setup-dotnet@v1
+          uses: actions/setup-dotnet@v2
           with:
-            dotnet-version: 5.0.401
+            dotnet-version: 6.0.x
 
         # Run tests
         - name: Test
@@ -24,12 +24,12 @@ jobs:
 
         # Publish the website
         - name: GitHub Pages action
-          if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
-          uses: peaceiris/actions-gh-pages@v3.6.1
+          if: ${{ github.ref == 'refs/heads/main' }} # Publish only when the push is on master
+          uses: peaceiris/actions-gh-pages@v3
           with:
             github_token: ${{ secrets.PUBLISH_TOKEN }}
             publish_branch: gh-pages
-            publish_dir: bin/Release/net5.0/publish/
+            publish_dir: bin/Release/net6.0/publish/
             allow_empty_commit: false
             keep_files: false
             force_orphan: true
