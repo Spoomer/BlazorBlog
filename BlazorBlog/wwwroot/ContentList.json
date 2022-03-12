@@ -1,23 +1,14 @@
 [
    {
-      "Id": "18a86343-b3fa-4381-a3e0-7ce508b6caa9",
-      "Tags": [
-         "tag1",
-         "tag2"
-      ],
-      "Title": "Testtitel",
-      "ContentSnippet": "\u003Cp\u003ETextContent\u003Cp\u003E Hallo Wo Wie..."
-   },
-   {
       "Id": "4d4f6282-bc48-4909-acfc-054789aa2903",
       "Tags": [],
-      "Title": "HI",
-      "ContentSnippet": "BlazorBlog.Lib.Models.ContentPart..."
+      "Title": "One Post",
+      "ContentSnippet": "\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras suscipit justo fringilla vestibulum sagittis. Etiam sed rhoncus elit. Donec laoreet, felis a pellentesque fringilla, lorem nulla lacinia orci, non semper neque felis eu leo. Nam congue elementum elit, a interdum lectus viverra at. Pellentesque molestie, arcu sit amet cursus sagittis, massa velit interdum diam, eget pretium nisl velit vel lectus. Curabitur id arcu fringilla, pellentesque ex vel, rutrum turpis. Vestibulum nec alique..."
    },
    {
       "Id": "a652091e-c456-42f2-8bb9-56b33f576600",
       "Tags": [],
-      "Title": "Das ist der Titel",
+      "Title": "Another Post",
       "ContentSnippet": "\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras suscipit justo fringilla vestibulum sagittis. Etiam sed rhoncus elit. Donec laoreet, felis a pellentesque fringilla, lorem nulla lacinia orci, non semper neque felis eu leo. Nam congue elementum elit, a interdum lectus viverra at. Pellentesque molestie, arcu sit amet cursus sagittis, massa velit interdum diam, eget pretium nisl velit vel lectus. Curabitur id arcu fringilla, pellentesque ex vel, rutrum turpis. Vestibulum nec alique..."
    }
 ]
