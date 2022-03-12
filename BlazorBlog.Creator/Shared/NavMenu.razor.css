@@ -44,7 +44,6 @@
         align-items: center;
         line-height: 3rem;
         justify-content: space-around;
-        flex-direction: column;
     }
 
 .nav-item ::deep a.active {

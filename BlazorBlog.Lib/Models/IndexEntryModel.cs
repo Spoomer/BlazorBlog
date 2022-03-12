@@ -1,4 +1,6 @@
-﻿namespace BlazorBlog.Lib.Models;
+﻿using System;
+
+namespace BlazorBlog.Lib.Models;
 
 public class IndexEntryModel
 {
@@ -17,7 +19,16 @@ public class IndexEntryModel
         Title = contentModel.Title;
         if (contentModel.ContentParts.Length > 0)
         {
-            ContentSnippet = contentModel.ContentParts[0].Content + "...";
+            ReadOnlySpan<char> snippet;
+            if (contentModel.ContentParts[0].Content.Length > 500)
+            {
+                snippet = contentModel.ContentParts[0].Content.AsSpan(0,500);
+            }
+            else
+            {
+                snippet = contentModel.ContentParts[0].Content.AsSpan();
+            }
+            ContentSnippet = string.Concat(snippet, "...");
         }
 
     }

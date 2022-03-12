@@ -3,6 +3,7 @@
     "BlazorBlog.Creator": {
       "commandName": "Project",
       "launchBrowser": true,
+      "browser": "edge",
       "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
